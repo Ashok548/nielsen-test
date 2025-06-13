@@ -1,54 +1,42 @@
-# React + TypeScript + Vite
+# Test assignment - Pokemon search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Scenario:
+You are given a several components written but not finalized with React and api endpoints to work with. The project needs to be finished up.
+You are free to use any technology of personal preference, including Angular or similar frameworks. The provided components are just for supporting the requirement.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Those components are:
+- `Navigation` - a component that renders a list of links in header
+- `Search` - a component that renders a search form with autosuggest
+- `Results` - a component that renders a table with data from the api
+- `Paginator` - a component that renders a pagination for the table
 
-## Expanding the ESLint configuration
+The api endpoints are:
+- `GET https://pokeapi.co/api/v2/pokemon?limit=100` - returns a list of pokemons, will be used by `Search` compoenent to render autosuggest dropdown
+- `GET https://pokeapi.co/api/v2/pokemon/${pokemonName}/encounters` - returns a list of locations where the pokemon can be found, will be used by `Results` component to render the table
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Your task is to implement the following:
+- Project requirements: Create a project using `create-react-app`, `nextjs`, `angular cli` or any other boilerplate you like. We've tested the components using `nextjs`, hence the 'use client' directive at the top of the code.
+  - Be sure to use typescript.
+  - Use `tailwindcss` for styling.
+  - Make sure you have a robust folder structure for future scaling of the project. Be prepared to explain your choices.
+- Routing requirements: Create two route paths using any router of choice and add the provided components to the project. 
+  - Each page is supposed to show `Navigation` component at the top.
+  - The first page should have `Search` component and the second page should have `Results` and `Paginator` components. 
+  - When a pokemon is selected from the dropdown or search button clicked, the user should be redirected to the second page with the results of where the selected pokemon can be found (encounters).
+  - Returning back to the first page should keep the search query in the input field.
+  - Returning back to the result page should keep the search results and pagination state, the table can rerender though.
+  - Same on page refresh.
+- Extend the components: 
+  - `Navigation` component should be flexible and push the page links into a dropdown menu [...] one by one when the screen real estate is too small to fit all the links.
+  - `Results` component should not request the data from the api on every pagination interaction. Instead, it should request it only when the new search is executed.
+  - `Paginator` component should be able to handle the pagination of the data on the client side.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+During our review, we will be looking for:
+- Code quality and structure
+- Strong typing
+- Your ability to explain your choices live interview
+- Usage of modern and native HTML/JS technologies over framework-based ones is a big plus
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Send us the folder structure of your created workspace without node_modules folder.
+Good luck!
